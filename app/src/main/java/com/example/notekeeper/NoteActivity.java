@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Spinner;
 
+import java.util.List;
+
 public class  NoteActivity extends AppCompatActivity {
 
     @Override
@@ -20,6 +22,7 @@ public class  NoteActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Spinner spinnercourses = (Spinner) findViewById(R.id.spinner_courses);
+
 
     }
 
