@@ -23,6 +23,36 @@ public class DataManager {
     public String getCurrentUserEmail(){ return "stan.alexandru@gmail.com";}
 
     public List<NoteInfo> getNotes(){ return mNotes;}
-    
+
+    public int createNewNote(){
+        NoteInfo note= new NoteInfo(null, null, null);
+        mNotes.add(note);
+        return mNotes.size() -1 ;
+    }
+
+    public int findNote(NoteInfo note){
+        for (int index=0; index < mNotes.size(); index++) {
+            if (note.equals(mNotes.get(index)))
+                return index;
+        }
+        return -1;
+    }
+
+    public void removeNote(int index){ mNotes.remove(index);}
+
+    public List<CourseInfo> getmCourses(){return mCourses;}
+
+    public CourseInfo getCourse (String id){
+        for (CourseInfo course :mCourses){
+            if (id.equals(course.getCourseId()))
+                return course;
+        }
+        return null ;
+    }
+
+
 
 }
+
+
+
