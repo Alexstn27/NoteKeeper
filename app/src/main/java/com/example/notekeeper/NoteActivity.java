@@ -21,6 +21,7 @@ public static final String NOTE_POSITION ="com.example.notekeeper.NOTE_POSITION"
     private EditText mTextNoteTitle;
     private EditText mTextNoteText;
     private int mNotePosition;
+    private boolean mIsCancelling;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,13 @@ public static final String NOTE_POSITION ="com.example.notekeeper.NOTE_POSITION"
     @Override
     protected void onPause() {
         super.onPause();
-        saveNote();
+        if (mIsCancelling){
+            if (mIsNewNote) {
+                DataManager.getInstance().removeNote(mNotePosition);
+            }
+        }else {
+            saveNote();
+        }
     }
 
     private void saveNote() {
@@ -101,6 +108,9 @@ public static final String NOTE_POSITION ="com.example.notekeeper.NOTE_POSITION"
         if (id == R.id.action_send_mail) {
             sendEmail();
             return true;
+        } else if (id == R.id.action_cancel){
+            mIsCancelling = true;
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
